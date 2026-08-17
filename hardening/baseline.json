@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "frontend": {
+    "repository": "https://github.com/KelvinTegelaar/CIPP",
+    "tag": "v10.5.0",
+    "upstreamCommit": "4521af9d115e4552f1eafabb94d604bb87415843",
+    "hardenedBranch": "hardened/main",
+    "initialHardenedCommit": "d349a2a6b40051fe048f4c29c548085102672ac6",
+    "lockfileSha256": "c795d501c0726367f93af29cf07ad486968c85811eeb66b5fb3c957035568ba9"
+  },
+  "api": {
+    "repository": "https://github.com/KelvinTegelaar/CIPP-API",
+    "tag": "10.5.3",
+    "upstreamCommit": "ed7c3621bca0a1feafd5c1dbcc7abd0a97104553",
+    "hardenedBranch": "hardened/main",
+    "initialHardenedCommit": "ed7c3621bca0a1feafd5c1dbcc7abd0a97104553",
+    "lockfileSha256": "04d7562367228cfe4414fc23a8ed1ba2855c1dd27ee295d776bf0e92f338a35e"
+  },
+  "updatedAt": "2026-06-22T00:00:00Z",
+  "currentRelease": null
+}

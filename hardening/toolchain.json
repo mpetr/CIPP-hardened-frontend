@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "node": {
+    "version": "22.13.0",
+    "distribution": "node-v22.13.0-win-x64.zip",
+    "source": "https://nodejs.org/dist/v22.13.0/",
+    "sha256": "b0feb09ebf41328628e7383f7a092fb7342ce1e05c867a90cf8f1379205a8429",
+    "versionTag": "v22.13.0",
+    "releaseDate": "2025-01-06",
+    "releaseEvidence": "https://nodejs.org/download/release/index.json"
+  },
+  "yarn": {
+    "version": "1.22.22",
+    "source": "https://registry.npmjs.org/yarn/-/yarn-1.22.22.tgz",
+    "sha1": "ac34549e6aa8e7ead463a7407e1c7390f61a6610",
+    "integrity": "sha512-prL3kGtyG7o9Z9Sv8IPfBNrWTDmXB4Qbes8A9rEzt6wkJV8mUvoirjU0Mp3GGAU06Y0XQyA3/2/RQFVuK7MTfg==",
+    "versionTag": "yarn@1.22.22",
+    "releaseTimestamp": "2024-03-09T21:35:40.868Z",
+    "releaseEvidence": "https://registry.npmjs.org/yarn"
+  },
+  "notes": [
+    "Node hash was verified against the official SHASUMS256.txt.",
+    "Yarn metadata is pinned for CI/local bootstrap; project dependencies remain frozen by yarn.lock.",
+    "Human-readable versionTag fields are labels only; hashes/integrity values are authoritative pins.",
+    "JSON does not support comments, so mutable version labels are recorded as adjacent versionTag metadata."
+  ]
+}

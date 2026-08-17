@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://cipp-hardened.local/schemas/release-manifest.schema.json",
+  "title": "CIPP-hardened release manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "bundleId",
+    "status",
+    "createdAt",
+    "releaseAgePolicy",
+    "frontend",
+    "api",
+    "documentation",
+    "artifacts",
+    "previousRelease"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "bundleId": {
+      "type": "string",
+      "pattern": "^ch-ui[0-9]+\\.[0-9]+\\.[0-9]+-api[0-9]+\\.[0-9]+\\.[0-9]+-r[0-9]+$"
+    },
+    "status": {
+      "enum": [
+        "review-in-progress",
+        "approved",
+        "deployed",
+        "failed",
+        "rolled-back",
+        "deferred"
+      ]
+    },
+    "createdAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "releaseAgePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimumAgeDays",
+        "decisionTimestampBasis",
+        "latestAllowedWhenAged",
+        "criticalFreshExceptionsOnly"
+      ],
+      "properties": {
+        "minimumAgeDays": {
+          "type": "integer",
+          "minimum": 30
+        },
+        "decisionTimestampBasis": {
+          "enum": [
+            "approval.approvedAt",
+            "candidate.generatedAt",
+            "manual"
+          ]
+        },
+        "latestAllowedWhenAged": {
+          "type": "boolean"
+        },
+        "criticalFreshExceptionsOnly": {
+          "type": "boolean"
+        }
+      }
+    },
+    "frontend": {
+      "$ref": "#/$defs/component"
+    },
+    "api": {
+      "$ref": "#/$defs/component"
+    },
+    "documentation": {
+      "type": "object",
+      "required": [
+        "codexReview",
+        "findings",
+        "decision",
+        "releaseAgeEvidence"
+      ],
+      "properties": {
+        "codexReview": {
+          "type": "string"
+        },
+        "findings": {
+          "type": "string"
+        },
+        "decision": {
+          "type": "string"
+        },
+        "releaseAgeEvidence": {
+          "type": "string"
+        },
+        "risks": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "versionExceptions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "hardeningChanges": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "component",
+          "path",
+          "sha256"
+        ],
+        "properties": {
+          "component": {
+            "enum": [
+              "frontend",
+              "api"
+            ]
+          },
+          "path": {
+            "type": "string"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "previousRelease": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "approval": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "properties": {
+        "maintainer": {
+          "type": "string"
+        },
+        "approvedAt": {
+          "type": "string",
+          "format": "date-time"
+        }
+      },
+      "required": [
+        "maintainer",
+        "approvedAt"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repository",
+        "upstreamTag",
+        "upstreamCommit",
+        "hardenedCommit",
+        "lockfileSha256"
+      ],
+      "properties": {
+        "repository": {
+          "type": "string"
+        },
+        "upstreamTag": {
+          "type": "string"
+        },
+        "upstreamCommit": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "hardenedCommit": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "lockfileSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "moduleInventorySha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}
