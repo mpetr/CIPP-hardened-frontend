@@ -36,3 +36,15 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
         run: yarn build
+
+      - name: Package static frontend
+        run: |
+          cd out
+          zip -r ../frontend-out.zip .
+
+      - name: Upload frontend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-out
+          path: frontend-out.zip
+          if-no-files-found: error
